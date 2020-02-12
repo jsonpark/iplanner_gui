@@ -3,6 +3,13 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Intermediate files / dependencies
+bin/
+lib/
+
+# Intermediate moc files
+vs/iplanner_gui/src/
+
 # User-specific files
 *.rsuser
 *.suo

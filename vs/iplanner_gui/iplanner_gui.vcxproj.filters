@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="src\window">
+      <UniqueIdentifier>{69703273-70f8-48e3-af2b-95b179f63c67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="git">
+      <UniqueIdentifier>{3d895389-9e9e-4d7f-94a1-b380ad215f9d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\iplanner\main.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\iplanner\window\renderer.cc">
+      <Filter>src\window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\iplanner\window\qt_wrapper.cc">
+      <Filter>src\window</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="..\..\src\iplanner\window\renderer.h">
+      <Filter>src\window</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\src\iplanner\window\qt_wrapper.h">
+      <Filter>src\window</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\.gitignore">
+      <Filter>git</Filter>
+    </None>
+    <None Include="..\..\README.md">
+      <Filter>git</Filter>
+    </None>
+  </ItemGroup>
+</Project>

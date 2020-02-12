@@ -12,10 +12,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\lib\glad\glad.c" />
+    <ClCompile Include="..\..\src\iplanner\data\mesh.cc" />
+    <ClCompile Include="..\..\src\iplanner\data\texture.cc" />
     <ClCompile Include="..\..\src\iplanner\gl\buffer.cc" />
-    <ClCompile Include="..\..\src\iplanner\gl\texture.cc" />
+    <ClCompile Include="..\..\src\iplanner\gl\gl_texture.cc" />
     <ClCompile Include="..\..\src\iplanner\gl\vertex_array.cc" />
     <ClCompile Include="..\..\src\iplanner\main.cc" />
+    <ClCompile Include="..\..\src\iplanner\utils\async_loader.cc" />
     <ClCompile Include="..\..\src\iplanner\window\qt_wrapper.cc" />
     <ClCompile Include="..\..\src\iplanner\window\renderer.cc" />
   </ItemGroup>
@@ -33,9 +36,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\lib\glad\glad.h" />
+    <ClInclude Include="..\..\src\iplanner\data\mesh.h" />
+    <ClInclude Include="..\..\src\iplanner\data\texture.h" />
     <ClInclude Include="..\..\src\iplanner\gl\buffer.h" />
-    <ClInclude Include="..\..\src\iplanner\gl\texture.h" />
+    <ClInclude Include="..\..\src\iplanner\gl\gl_texture.h" />
     <ClInclude Include="..\..\src\iplanner\gl\vertex_array.h" />
+    <ClInclude Include="..\..\src\iplanner\types.h" />
+    <ClInclude Include="..\..\src\iplanner\utils\async_loader.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5FA1D3D8-33AD-479D-8D9C-FC316FEFDDD9}</ProjectGuid>
@@ -95,13 +102,15 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-      <AdditionalIncludeDirectories>..\..\lib;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\lib\eigen-eigen-323c052e1731;C:\lib\assimp\include;..\..\lib;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName)d.exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>assimp-vc142-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <QtMoc>
       <QtMocDir>$(IntDir)\moc\temp\%(RelativeDir)</QtMocDir>
@@ -114,12 +123,14 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>..\..\lib;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\lib\eigen-eigen-323c052e1731;C:\lib\assimp\include;..\..\lib;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
+      <AdditionalDependencies>assimp-vc142-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <QtMoc>
       <QtMocDir>$(IntDir)\moc\temp\%(RelativeDir)</QtMocDir>

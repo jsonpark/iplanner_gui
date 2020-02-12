@@ -31,6 +31,12 @@
     <Filter Include="lib\glad">
       <UniqueIdentifier>{54f77ee9-b636-4d9a-9834-5a58778c4a9d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\iplanner\data">
+      <UniqueIdentifier>{535dbf62-277c-42bb-87dd-b87c4237f5b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\iplanner\utils">
+      <UniqueIdentifier>{68407142-bb2a-4583-befb-94c53c1e1f75}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\iplanner\window\renderer.cc">
@@ -45,14 +51,23 @@
     <ClCompile Include="..\..\src\iplanner\gl\buffer.cc">
       <Filter>src\iplanner\gl</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\iplanner\gl\texture.cc">
-      <Filter>src\iplanner\gl</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\iplanner\gl\vertex_array.cc">
       <Filter>src\iplanner\gl</Filter>
     </ClCompile>
     <ClCompile Include="..\..\lib\glad\glad.c">
       <Filter>lib\glad</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\iplanner\data\mesh.cc">
+      <Filter>src\iplanner\data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\iplanner\data\texture.cc">
+      <Filter>src\iplanner\data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\iplanner\utils\async_loader.cc">
+      <Filter>src\iplanner\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\iplanner\gl\gl_texture.cc">
+      <Filter>src\iplanner\gl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -81,14 +96,26 @@
     <ClInclude Include="..\..\src\iplanner\gl\buffer.h">
       <Filter>src\iplanner\gl</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\iplanner\gl\texture.h">
-      <Filter>src\iplanner\gl</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\iplanner\gl\vertex_array.h">
       <Filter>src\iplanner\gl</Filter>
     </ClInclude>
     <ClInclude Include="..\..\lib\glad\glad.h">
       <Filter>lib\glad</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\iplanner\data\mesh.h">
+      <Filter>src\iplanner\data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\iplanner\data\texture.h">
+      <Filter>src\iplanner\data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\iplanner\utils\async_loader.h">
+      <Filter>src\iplanner\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\iplanner\gl\gl_texture.h">
+      <Filter>src\iplanner\gl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\iplanner\types.h">
+      <Filter>src\iplanner</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

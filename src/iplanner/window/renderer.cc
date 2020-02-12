@@ -56,10 +56,10 @@ void Renderer::Render()
 
   program_->release();
 
-  frame_++;
-
   if (animating_)
+  {
     requestUpdate();
+  }
 }
 
 void Renderer::SetAnimating(bool animating)

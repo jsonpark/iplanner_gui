@@ -1,19 +1,21 @@
 #ifndef IPLANNER_WINDOW_QT_WRAPPER_H_
 #define IPLANNER_WINDOW_QT_WRAPPER_H_
 
+#include <glad/glad.h>
+
 #include <QtGui/QWindow>
-#include <QtGui/QOpenGLFunctions>
+#include <QtGui/QOpenGLPaintDevice>
 #include <QtGui/QOpenGLShaderProgram>
 
 namespace iplanner
 {
-class QtWrapper : public QWindow, protected QOpenGLFunctions
+class QtWrapper : public QWindow
 {
   Q_OBJECT
 
 public:
   explicit QtWrapper(QWindow* parent = 0);
-  virtual ~QtWrapper();
+  virtual ~QtWrapper() override;
 
   virtual void Render(QPainter* painter);
   virtual void Render();
@@ -29,16 +31,9 @@ protected:
 
   void exposeEvent(QExposeEvent* event) override;
 
-  // Wrapping event functions
-  virtual bool Event(QEvent* event);
-  virtual void ExposeEvent(QExposeEvent* event);
-
 private:
-  QOpenGLContext* context_ = nullptr;
-  QOpenGLPaintDevice* device_ = nullptr;
-
-  QOpenGLShaderProgram* program_ = nullptr;
-  int frame_ = 0;
+  std::unique_ptr<QOpenGLContext> context_;
+  std::unique_ptr<QOpenGLPaintDevice> device_;
 };
 }
 

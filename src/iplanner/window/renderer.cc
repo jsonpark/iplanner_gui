@@ -1,5 +1,7 @@
 #include "iplanner/window/renderer.h"
 
+#include <iostream>
+
 #include <QtGui/QOpenGLContext>
 #include <QtGui/QOpenGLPaintDevice>
 #include <QtGui/QPainter>
@@ -7,25 +9,6 @@
 
 namespace iplanner
 {
-namespace
-{
-static const char* vertex_shader_source =
-  "attribute highp vec4 pos_attr;\n"
-  "attribute lowp vec4 col_attr;\n"
-  "varying lowp vec4 col;\n"
-  "uniform highp mat4 matrix;\n"
-  "void main() {\n"
-  "   col = col_attr;\n"
-  "   gl_Position = matrix * pos_attr;\n"
-  "}\n";
-
-static const char* fragment_shader_source =
-  "varying lowp vec4 col;\n"
-  "void main() {\n"
-  "   gl_FragColor = col;\n"
-  "}\n";
-}
-
 Renderer::Renderer(QWindow* parent)
   : QtWrapper(parent)
 {
@@ -33,18 +16,30 @@ Renderer::Renderer(QWindow* parent)
 
 Renderer::~Renderer()
 {
-  delete device_;
 }
 
-void Renderer::Render(QPainter* painter)
+void Renderer::Initialize()
 {
-  Q_UNUSED(painter);
+  const char shader_dir[] = "..\\src\\shader\\";
+
+  program_ = std::make_unique<QOpenGLShaderProgram>();
+  program_->addShaderFromSourceFile(QOpenGLShader::Vertex, QString(shader_dir) + "test.vert");
+  program_->addShaderFromSourceFile(QOpenGLShader::Fragment, QString(shader_dir) + "test.frag");
+  program_->link();
+
+  glClearColor(1.f, 1.f, 1.f, 1.f);
+
+  vbo_.Update();
+
+  vao_.AttribPointer(0, 2, vbo_, 5, 0);
+  vao_.AttribPointer(1, 3, vbo_, 5, 2);
+  vao_.Indices(gl::VertexArray::DrawMode::TRIANGLES, 3);
 }
 
 void Renderer::Render()
 {
-  const qreal retinaScale = devicePixelRatio();
-  glViewport(0, 0, width() * retinaScale, height() * retinaScale);
+  const qreal retina_scale = devicePixelRatio();
+  glViewport(0, 0, width() * retina_scale, height() * retina_scale);
 
   glClear(GL_COLOR_BUFFER_BIT);
 
@@ -55,30 +50,9 @@ void Renderer::Render()
   matrix.translate(0, 0, -2);
   matrix.rotate(100.0f * static_cast<double>(frame_) / screen()->refreshRate(), 0, 1, 0);
 
-  program_->setUniformValue(matrix_uniform_, matrix);
+  program_->setUniformValue(program_->uniformLocation("matrix"), matrix);
 
-  GLfloat vertices[] = {
-      0.0f, 0.707f,
-      -0.5f, -0.5f,
-      0.5f, -0.5f
-  };
-
-  GLfloat colors[] = {
-      1.0f, 0.0f, 0.0f,
-      0.0f, 1.0f, 0.0f,
-      0.0f, 0.0f, 1.0f
-  };
-
-  glVertexAttribPointer(pos_attr_, 2, GL_FLOAT, GL_FALSE, 0, vertices);
-  glVertexAttribPointer(col_attr_, 3, GL_FLOAT, GL_FALSE, 0, colors);
-
-  glEnableVertexAttribArray(0);
-  glEnableVertexAttribArray(1);
-
-  glDrawArrays(GL_TRIANGLES, 0, 3);
-
-  glDisableVertexAttribArray(1);
-  glDisableVertexAttribArray(0);
+  vao_.Draw();
 
   program_->release();
 
@@ -86,17 +60,6 @@ void Renderer::Render()
 
   if (animating_)
     requestUpdate();
-}
-
-void Renderer::Initialize()
-{
-  program_ = new QOpenGLShaderProgram(this);
-  program_->addShaderFromSourceCode(QOpenGLShader::Vertex, vertex_shader_source);
-  program_->addShaderFromSourceCode(QOpenGLShader::Fragment, fragment_shader_source);
-  program_->link();
-  pos_attr_ = program_->attributeLocation("pos_attr");
-  col_attr_ = program_->attributeLocation("col_attr");
-  matrix_uniform_ = program_->uniformLocation("matrix");
 }
 
 void Renderer::SetAnimating(bool animating)

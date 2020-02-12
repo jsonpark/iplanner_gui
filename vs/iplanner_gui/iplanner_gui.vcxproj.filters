@@ -10,30 +10,57 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="src\window">
-      <UniqueIdentifier>{69703273-70f8-48e3-af2b-95b179f63c67}</UniqueIdentifier>
-    </Filter>
     <Filter Include="git">
       <UniqueIdentifier>{3d895389-9e9e-4d7f-94a1-b380ad215f9d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\iplanner">
+      <UniqueIdentifier>{05beeb0e-4df5-4bcd-9c9e-b355a18ec293}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\iplanner\window">
+      <UniqueIdentifier>{69703273-70f8-48e3-af2b-95b179f63c67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\shader">
+      <UniqueIdentifier>{748e832f-7d77-49b9-9077-4dd9c444d27b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\iplanner\gl">
+      <UniqueIdentifier>{29fcb826-a147-42bc-8b5a-b424590a6612}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{4fe18605-c536-471f-94d0-172e96e37170}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glad">
+      <UniqueIdentifier>{54f77ee9-b636-4d9a-9834-5a58778c4a9d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\iplanner\main.cc">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\iplanner\window\renderer.cc">
-      <Filter>src\window</Filter>
+      <Filter>src\iplanner\window</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\iplanner\window\qt_wrapper.cc">
-      <Filter>src\window</Filter>
+      <Filter>src\iplanner\window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\iplanner\main.cc">
+      <Filter>src\iplanner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\iplanner\gl\buffer.cc">
+      <Filter>src\iplanner\gl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\iplanner\gl\texture.cc">
+      <Filter>src\iplanner\gl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\iplanner\gl\vertex_array.cc">
+      <Filter>src\iplanner\gl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\glad\glad.c">
+      <Filter>lib\glad</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="..\..\src\iplanner\window\renderer.h">
-      <Filter>src\window</Filter>
+      <Filter>src\iplanner\window</Filter>
     </QtMoc>
     <QtMoc Include="..\..\src\iplanner\window\qt_wrapper.h">
-      <Filter>src\window</Filter>
+      <Filter>src\iplanner\window</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
@@ -43,5 +70,25 @@
     <None Include="..\..\README.md">
       <Filter>git</Filter>
     </None>
+    <None Include="..\..\src\shader\test.frag">
+      <Filter>src\shader</Filter>
+    </None>
+    <None Include="..\..\src\shader\test.vert">
+      <Filter>src\shader</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\iplanner\gl\buffer.h">
+      <Filter>src\iplanner\gl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\iplanner\gl\texture.h">
+      <Filter>src\iplanner\gl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\iplanner\gl\vertex_array.h">
+      <Filter>src\iplanner\gl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\glad\glad.h">
+      <Filter>lib\glad</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

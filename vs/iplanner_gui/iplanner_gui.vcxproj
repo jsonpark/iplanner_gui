@@ -11,6 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\lib\glad\glad.c" />
+    <ClCompile Include="..\..\src\iplanner\gl\buffer.cc" />
+    <ClCompile Include="..\..\src\iplanner\gl\texture.cc" />
+    <ClCompile Include="..\..\src\iplanner\gl\vertex_array.cc" />
     <ClCompile Include="..\..\src\iplanner\main.cc" />
     <ClCompile Include="..\..\src\iplanner\window\qt_wrapper.cc" />
     <ClCompile Include="..\..\src\iplanner\window\renderer.cc" />
@@ -24,6 +28,14 @@
   <ItemGroup>
     <None Include="..\..\.gitignore" />
     <None Include="..\..\README.md" />
+    <None Include="..\..\src\shader\test.frag" />
+    <None Include="..\..\src\shader\test.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\lib\glad\glad.h" />
+    <ClInclude Include="..\..\src\iplanner\gl\buffer.h" />
+    <ClInclude Include="..\..\src\iplanner\gl\texture.h" />
+    <ClInclude Include="..\..\src\iplanner\gl\vertex_array.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5FA1D3D8-33AD-479D-8D9C-FC316FEFDDD9}</ProjectGuid>

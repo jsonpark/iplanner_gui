@@ -15,13 +15,7 @@ QtWrapper::QtWrapper(QWindow* parent)
   setSurfaceType(QWindow::OpenGLSurface);
 }
 
-QtWrapper::~QtWrapper()
-{
-  delete device_;
-
-  if (context_)
-    delete context_;
-}
+QtWrapper::~QtWrapper() = default;
 
 void QtWrapper::Render(QPainter* painter)
 {
@@ -31,14 +25,14 @@ void QtWrapper::Render(QPainter* painter)
 void QtWrapper::Render()
 {
   if (!device_)
-    device_ = new QOpenGLPaintDevice;
+    device_ = std::make_unique<QOpenGLPaintDevice>();
 
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
   device_->setSize(size() * devicePixelRatio());
   device_->setDevicePixelRatio(devicePixelRatio());
 
-  QPainter painter(device_);
+  QPainter painter(device_.get());
   Render(&painter);
 }
 
@@ -60,7 +54,7 @@ void QtWrapper::RenderNow()
 
   if (context_ == nullptr)
   {
-    context_ = new QOpenGLContext(this);
+    context_ = std::make_unique<QOpenGLContext>();
     context_->setFormat(requestedFormat());
     context_->create();
 
@@ -71,7 +65,16 @@ void QtWrapper::RenderNow()
 
   if (needs_initialize)
   {
-    initializeOpenGLFunctions();
+    // Using OpenGL functions inherited and loaded by QOpenGLFunctions_4_4_Core
+    //initializeOpenGLFunctions();
+
+    // Using glad
+    if (!gladLoadGL())
+    {
+      std::cout << "Failed to initialize GLAD" << std::endl;
+      return;
+    }
+
     Initialize();
   }
 
@@ -99,15 +102,5 @@ void QtWrapper::exposeEvent(QExposeEvent* event)
 
   if (isExposed())
     RenderNow();
-}
-
-bool QtWrapper::Event(QEvent* e)
-{
-  return event(e);
-}
-
-void QtWrapper::ExposeEvent(QExposeEvent* e)
-{
-  exposeEvent(e);
 }
 }

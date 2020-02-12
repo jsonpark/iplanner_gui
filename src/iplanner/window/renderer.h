@@ -3,9 +3,8 @@
 
 #include "iplanner/window/qt_wrapper.h"
 
-#include <QtGui/QWindow>
-#include <QtGui/QOpenGLFunctions>
-#include <QtGui/QOpenGLShaderProgram>
+#include "iplanner/gl/buffer.h"
+#include "iplanner/gl/vertex_array.h"
 
 namespace iplanner
 {
@@ -17,25 +16,24 @@ public:
   explicit Renderer(QWindow* parent = 0);
   ~Renderer() override;
 
-  void Render(QPainter* painter) override;
-  void Render() override;
-
   void Initialize() override;
+  void Render() override;
 
   void SetAnimating(bool animating);
 
 private:
   bool animating_ = false;
-
-  GLuint pos_attr_ = 0;
-  GLuint col_attr_ = 0;
-  GLuint matrix_uniform_ = 0;
-
-  QOpenGLContext* context_ = nullptr;
-  QOpenGLPaintDevice* device_ = nullptr;
-
-  QOpenGLShaderProgram* program_ = nullptr;
   int frame_ = 0;
+
+  gl::VertexArray vao_;
+  gl::ArrayBuffer<float> vbo_
+  {
+    0.0f, 0.707f, 1.0f, 0.0f, 0.0f,
+    -0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+    0.5f, -0.5f, 0.0f, 0.0f, 1.0f
+  };
+
+  std::unique_ptr<QOpenGLShaderProgram> program_;
 };
 }
 

@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include <QtCore/QCoreApplication>
 #include <QGuiApplication>
 #include <QtGui/QScreen>
@@ -9,6 +11,8 @@ int main(int argc, char *argv[])
   QGuiApplication a(argc, argv);
 
   QSurfaceFormat format;
+  format.setVersion(4, 4);
+  format.setProfile(QSurfaceFormat::OpenGLContextProfile::CoreProfile);
   format.setSamples(16);
 
   iplanner::Renderer window;

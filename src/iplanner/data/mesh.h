@@ -29,6 +29,11 @@ public:
 
   bool LoadFunc(const std::string& filename) override;
 
+  auto NumVertices() const
+  {
+    return positions_.size();
+  }
+
   auto& GetPositions()
   {
     return positions_;

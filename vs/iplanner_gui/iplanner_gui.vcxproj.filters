@@ -60,9 +60,6 @@
     <ClCompile Include="..\..\src\iplanner\data\mesh.cc">
       <Filter>src\iplanner\data</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\iplanner\data\texture.cc">
-      <Filter>src\iplanner\data</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\iplanner\utils\async_loader.cc">
       <Filter>src\iplanner\utils</Filter>
     </ClCompile>
@@ -83,6 +80,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\iplanner\gl\shader.cc">
       <Filter>src\iplanner\gl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\iplanner\utils\stbi_load_helper.cc">
+      <Filter>src\iplanner\utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -124,6 +124,24 @@
     <None Include="..\..\src\shader\ground_depth.vert">
       <Filter>src\shader</Filter>
     </None>
+    <None Include="..\..\src\shader\mesh_texture.frag">
+      <Filter>src\shader</Filter>
+    </None>
+    <None Include="..\..\src\shader\mesh_texture.vert">
+      <Filter>src\shader</Filter>
+    </None>
+    <None Include="..\..\src\shader\mesh_texture_light.frag">
+      <Filter>src\shader</Filter>
+    </None>
+    <None Include="..\..\src\shader\mesh_texture_light.vert">
+      <Filter>src\shader</Filter>
+    </None>
+    <None Include="..\..\src\shader\mesh_color_light.frag">
+      <Filter>src\shader</Filter>
+    </None>
+    <None Include="..\..\src\shader\mesh_color_light.vert">
+      <Filter>src\shader</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\iplanner\gl\buffer.h">
@@ -161,6 +179,12 @@
     </ClInclude>
     <ClInclude Include="..\..\src\iplanner\gl\shader.h">
       <Filter>src\iplanner\gl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\iplanner\utils\stbi_load_helper.h">
+      <Filter>src\iplanner\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\iplanner\data\material.h">
+      <Filter>src\iplanner\data</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

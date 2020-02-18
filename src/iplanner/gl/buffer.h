@@ -175,6 +175,23 @@ public:
     return *this;
   }
 
+
+  // Copy/move from std vector
+  Buffer& operator = (const std::vector<T>& data)
+  {
+    data_ = data;
+    needs_update_ = true;
+    return *this;
+  }
+
+  Buffer& operator = (std::vector<T>&& data)
+  {
+    data_ = std::move(data);
+    needs_update_ = true;
+    return *this;
+  }
+
+
   Ref operator [] (int idx)
   {
     return Ref(*this, idx);

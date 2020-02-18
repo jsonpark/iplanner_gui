@@ -13,6 +13,37 @@ EngineWidget::EngineWidget()
 {
   camera_ = std::make_shared<Camera>();
   camera_->SetEye(0.f, -1.f, 1.f);
+
+  Light light;
+  light.type = Light::Type::Directional;
+  light.position = Vector3f(-1.f, -1.f, 1.f);
+  light.ambient = Vector3f(0.05f, 0.05f, 0.05f);
+  light.diffuse = Vector3f(0.3f, 0.3f, 0.3f);
+  light.specular = Vector3f(1.f, 1.f, 1.f);
+  lights_.push_back(light);
+
+  light.position = Vector3f(1.f, -1.f, 1.f);
+  light.ambient = Vector3f(0.05f, 0.05f, 0.05f);
+  light.diffuse = Vector3f(0.3f, 0.3f, 0.3f);
+  light.specular = Vector3f(1.f, 1.f, 1.f);
+  lights_.push_back(light);
+
+  light.position = Vector3f(-1.f, 1.f, 1.f);
+  light.ambient = Vector3f(0.05f, 0.05f, 0.05f);
+  light.diffuse = Vector3f(0.3f, 0.3f, 0.3f);
+  light.specular = Vector3f(1.f, 1.f, 1.f);
+  lights_.push_back(light);
+
+  light.position = Vector3f(1.f, 1.f, 1.f);
+  light.ambient = Vector3f(0.05f, 0.05f, 0.05f);
+  light.diffuse = Vector3f(0.3f, 0.3f, 0.3f);
+  light.specular = Vector3f(1.f, 1.f, 1.f);
+  lights_.push_back(light);
+
+  material_.ambient = Vector3f(0.5f, 0.5f, 0.5f);
+  material_.diffuse = Vector3f(0.5f, 0.5f, 0.5f);
+  material_.specular = Vector3f(1.f, 1.f, 1.f);
+  material_.shininess = 0.8f;
 }
 
 EngineWidget::~EngineWidget() = default;
@@ -28,10 +59,8 @@ void EngineWidget::initializeGL()
   glClearColor(1.f, 1.f, 1.f, 1.f);
   glEnable(GL_DEPTH_TEST);
 
-  // Test triangle vao
-  vao_.AttribPointer(0, 3, vbo_, 6, 0);
-  vao_.AttribPointer(1, 3, vbo_, 6, 3);
-  vao_.Indices(gl::VertexArray::DrawMode::TRIANGLES, 3);
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
   // Ground depth
   ground_depth_vao_.AttribPointer(0, 3, ground_depth_vbo_);
@@ -72,6 +101,23 @@ void EngineWidget::initializeGL()
   lattice_vao_.AttribPointer(0, 3, lattice_vbo_, 6, 0);
   lattice_vao_.AttribPointer(1, 3, lattice_vbo_, 6, 3);
   lattice_vao_.Indices(gl::VertexArray::DrawMode::LINES, (lattice_num_ * 2 + 1) * 2 * 2 + 2);
+
+  // Mesh
+  mesh_texture_.LoadAsync(mesh_.GetTextureFilename());
+
+  mesh_vbo_positions_ = mesh_.GetPositions();
+  mesh_vbo_normals_ = mesh_.GetNormals();
+  mesh_vbo_tex_coords_ = mesh_.GetTexCoords();
+  mesh_elements_ = mesh_.GetIndices();
+
+  mesh_texture_vao_.AttribPointer(0, 3, mesh_vbo_positions_);
+  mesh_texture_vao_.AttribPointer(1, 2, mesh_vbo_tex_coords_);
+  mesh_texture_vao_.Indices(gl::VertexArray::DrawMode::TRIANGLES, mesh_elements_);
+
+  mesh_texture_light_vao_.AttribPointer(0, 3, mesh_vbo_positions_);
+  mesh_texture_light_vao_.AttribPointer(1, 3, mesh_vbo_normals_);
+  mesh_texture_light_vao_.AttribPointer(2, 2, mesh_vbo_tex_coords_);
+  mesh_texture_light_vao_.Indices(gl::VertexArray::DrawMode::TRIANGLES, mesh_elements_);
 }
 
 void EngineWidget::paintGL()
@@ -98,11 +144,84 @@ void EngineWidget::paintGL()
 
   glDisable(GL_DEPTH_TEST);
   lattice_vao_.Draw();
-
   glEnable(GL_DEPTH_TEST);
-  vao_.Draw();
 
-  color_3d_program_.Done();
+  if (mesh_texture_.IsReady())
+  {
+    mesh_texture_.Get();
+    mesh_texture_object_.Update(mesh_texture_);
+  }
+
+  if (mesh_texture_.IsLoaded())
+    mesh_texture_object_.Bind();
+
+  // Mesh color
+  if (draw_color_)
+  {
+    mesh_texture_program_.Use();
+    mesh_texture_program_.UniformMatrix4f("projection", camera_->ProjectionMatrix());
+    mesh_texture_program_.UniformMatrix4f("view", camera_->ViewMatrix());
+    mesh_texture_program_.UniformMatrix4f("model", matrix.matrix());
+
+    mesh_texture_vao_.Draw();
+  }
+
+  // Mesh light
+  if (draw_light_)
+  {
+    mesh_texture_light_program_.Use();
+    mesh_texture_light_program_.UniformMatrix4f("projection", camera_->ProjectionMatrix());
+    mesh_texture_light_program_.UniformMatrix4f("view", camera_->ViewMatrix());
+    mesh_texture_light_program_.UniformMatrix4f("model", matrix.matrix());
+    mesh_texture_light_program_.UniformMatrix3f("model_inv_tp", matrix.matrix().block(0, 0, 3, 3).inverse().transpose());
+    mesh_texture_light_program_.Uniform3f("eye_position", camera_->GetEye());
+
+    for (int i = 0; i < 8 && i < lights_.size(); i++)
+    {
+      const auto& light = lights_[i];
+
+      std::string prefix = "lights[" + std::to_string(i) + "]";
+      mesh_texture_light_program_.Uniform1i(prefix + ".use", 1);
+
+      switch (light.type)
+      {
+      case Light::Type::Directional:
+        mesh_texture_light_program_.Uniform1i(prefix + ".type", 0);
+        break;
+
+      case Light::Type::Point:
+        mesh_texture_light_program_.Uniform1i(prefix + ".type", 1);
+        break;
+      }
+
+      mesh_texture_light_program_.Uniform3f(prefix + ".position", light.position);
+      mesh_texture_light_program_.Uniform3f(prefix + ".ambient", light.ambient);
+      mesh_texture_light_program_.Uniform3f(prefix + ".diffuse", light.diffuse);
+      mesh_texture_light_program_.Uniform3f(prefix + ".specular", light.specular);
+      mesh_texture_light_program_.Uniform3f(prefix + ".attenuation", light.attenuation);
+    }
+    for (int i = lights_.size(); i < 8; i++)
+    {
+      std::string prefix = "lights[" + std::to_string(i) + "]";
+      mesh_texture_light_program_.Uniform1i(prefix + ".use", 0);
+    }
+
+    mesh_texture_light_program_.Uniform3f("material.ambient", material_.ambient);
+    mesh_texture_light_program_.Uniform3f("material.diffuse", material_.diffuse);
+    mesh_texture_light_program_.Uniform3f("material.specular", material_.specular);
+    mesh_texture_light_program_.Uniform1f("material.shininess", material_.shininess);
+
+    mesh_texture_light_program_.Uniform1i("diffuse_texture", 0);
+
+    if (mesh_texture_.IsLoaded())
+      mesh_texture_light_program_.Uniform1i("has_diffuse_texture", 1);
+    else
+      mesh_texture_light_program_.Uniform1i("has_diffuse_texture", 0);
+
+    mesh_texture_light_program_.Uniform1f("alpha", 0.5);
+
+    mesh_texture_light_vao_.Draw();
+  }
 }
 
 void EngineWidget::resizeGL(int width, int height)

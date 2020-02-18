@@ -130,6 +130,8 @@ void VertexArray::Indices(DrawMode mode, ElementBuffer& buffer, int count)
   if (count == -1)
     count = buffer.Size();
 
+  buffer.Update();
+
   mode_ = mode;
   has_element_buffer_ = true;
   element_buffer_ = &buffer;

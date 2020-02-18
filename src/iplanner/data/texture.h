@@ -5,6 +5,7 @@
 
 #include "iplanner/types.h"
 #include "iplanner/utils/async_loader.h"
+#include "iplanner/utils/stbi_load_helper.h"
 
 namespace iplanner
 {
@@ -49,7 +50,7 @@ public:
 private:
 };
 
-template <typename T>
+template <typename T = unsigned char>
 class Texture : public TextureBase, public AsyncLoader
 {
 private:
@@ -219,14 +220,32 @@ private:
 };
 
 template <>
-bool Texture<unsigned char>::LoadFunc(const std::string& filename);
+bool Texture<unsigned char>::LoadFunc(const std::string& filename)
+{
+  stbi_set_flip_vertically_on_load_helper(true);
+
+  auto data = stbi_load_helper(filename.c_str(), &width_, &height_, &num_components_, 0);
+  if (data == NULL)
+    return false;
+
+  data_.resize(static_cast<size_t>(width_)* height_* num_components_);
+  std::copy(data, data + (static_cast<size_t>(width_)* height_* num_components_), data_.data());
+
+  stbi_image_free_helper(data);
+
+  return true;
+}
 
 template <>
-bool Texture<float>::LoadFunc(const std::string& filename);
+bool Texture<float>::LoadFunc(const std::string& filename)
+{
+  // TODO
+  return false;
+}
 
 
 
-template<typename T>
+template<typename T = unsigned char>
 class Texture1D : public TextureBase
 {
 private:

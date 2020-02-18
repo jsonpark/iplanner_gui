@@ -14,13 +14,13 @@
     <ClCompile Include="..\..\lib\glad\glad.c" />
     <ClCompile Include="..\..\src\iplanner\data\camera.cc" />
     <ClCompile Include="..\..\src\iplanner\data\mesh.cc" />
-    <ClCompile Include="..\..\src\iplanner\data\texture.cc" />
     <ClCompile Include="..\..\src\iplanner\gl\buffer.cc" />
     <ClCompile Include="..\..\src\iplanner\gl\program.cc" />
     <ClCompile Include="..\..\src\iplanner\gl\shader.cc" />
     <ClCompile Include="..\..\src\iplanner\gl\vertex_array.cc" />
     <ClCompile Include="..\..\src\iplanner\main.cc" />
     <ClCompile Include="..\..\src\iplanner\utils\async_loader.cc" />
+    <ClCompile Include="..\..\src\iplanner\utils\stbi_load_helper.cc" />
     <ClCompile Include="..\..\src\iplanner\widget\engine_widget.cc" />
     <ClCompile Include="..\..\src\iplanner\window\engine.cc" />
     <ClCompile Include="..\..\src\iplanner\window\qt_wrapper.cc" />
@@ -39,6 +39,12 @@
     <None Include="..\..\src\shader\color_3d.vert" />
     <None Include="..\..\src\shader\ground_depth.frag" />
     <None Include="..\..\src\shader\ground_depth.vert" />
+    <None Include="..\..\src\shader\mesh_color_light.frag" />
+    <None Include="..\..\src\shader\mesh_color_light.vert" />
+    <None Include="..\..\src\shader\mesh_texture.frag" />
+    <None Include="..\..\src\shader\mesh_texture.vert" />
+    <None Include="..\..\src\shader\mesh_texture_light.frag" />
+    <None Include="..\..\src\shader\mesh_texture_light.vert" />
     <None Include="..\..\src\shader\test.frag" />
     <None Include="..\..\src\shader\test.vert" />
   </ItemGroup>
@@ -46,6 +52,7 @@
     <ClInclude Include="..\..\lib\glad\glad.h" />
     <ClInclude Include="..\..\src\iplanner\data\camera.h" />
     <ClInclude Include="..\..\src\iplanner\data\light.h" />
+    <ClInclude Include="..\..\src\iplanner\data\material.h" />
     <ClInclude Include="..\..\src\iplanner\data\mesh.h" />
     <ClInclude Include="..\..\src\iplanner\data\texture.h" />
     <ClInclude Include="..\..\src\iplanner\gl\buffer.h" />
@@ -55,6 +62,7 @@
     <ClInclude Include="..\..\src\iplanner\gl\vertex_array.h" />
     <ClInclude Include="..\..\src\iplanner\types.h" />
     <ClInclude Include="..\..\src\iplanner\utils\async_loader.h" />
+    <ClInclude Include="..\..\src\iplanner\utils\stbi_load_helper.h" />
     <QtMoc Include="..\..\src\iplanner\widget\engine_widget.h" />
     <QtMoc Include="..\..\src\iplanner\window\engine.h" />
   </ItemGroup>

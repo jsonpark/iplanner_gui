@@ -5,6 +5,8 @@
 
 #include <glad/glad.h>
 
+#include "iplanner/data/texture.h"
+
 namespace iplanner
 {
 namespace gl
@@ -206,7 +208,7 @@ public:
 
   ~TextureObject2D() override = default;
 
-  void Update(const geom::Texture<T>& texture)
+  void Update(const Texture<T>& texture)
   {
     GLenum internal_format = GL_RGBA;
     GLenum format = GL_RGBA;
@@ -262,7 +264,7 @@ public:
 
   ~TextureObject1D() override = default;
 
-  void Update(const geom::Texture1D<T>& texture)
+  void Update(const Texture1D<T>& texture)
   {
     GLenum internal_format = GL_RGBA;
     GLenum format = GL_RGBA;

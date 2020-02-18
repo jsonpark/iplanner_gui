@@ -5,7 +5,6 @@
 
 #include <QtGui/QWindow>
 #include <QtGui/QOpenGLPaintDevice>
-#include <QtGui/QOpenGLShaderProgram>
 
 namespace iplanner
 {

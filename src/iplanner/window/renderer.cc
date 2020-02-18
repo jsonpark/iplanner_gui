@@ -6,6 +6,7 @@
 #include <QtGui/QOpenGLPaintDevice>
 #include <QtGui/QPainter>
 #include <QtGui/QScreen>
+#include <QMouseEvent>
 
 namespace iplanner
 {
@@ -68,5 +69,25 @@ void Renderer::SetAnimating(bool animating)
 
   if (animating_)
     RenderLater();
+}
+
+void Renderer::mouseMoveEvent(QMouseEvent* e)
+{
+}
+
+void Renderer::mousePressEvent(QMouseEvent* e)
+{
+}
+
+void Renderer::mouseReleaseEvent(QMouseEvent* e)
+{
+}
+
+void Renderer::keyPressEvent(QKeyEvent* ev)
+{
+}
+
+void Renderer::keyReleaseEvent(QKeyEvent* ev)
+{
 }
 }

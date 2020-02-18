@@ -12,13 +12,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\lib\glad\glad.c" />
+    <ClCompile Include="..\..\src\iplanner\data\camera.cc" />
     <ClCompile Include="..\..\src\iplanner\data\mesh.cc" />
     <ClCompile Include="..\..\src\iplanner\data\texture.cc" />
     <ClCompile Include="..\..\src\iplanner\gl\buffer.cc" />
-    <ClCompile Include="..\..\src\iplanner\gl\gl_texture.cc" />
+    <ClCompile Include="..\..\src\iplanner\gl\program.cc" />
+    <ClCompile Include="..\..\src\iplanner\gl\shader.cc" />
     <ClCompile Include="..\..\src\iplanner\gl\vertex_array.cc" />
     <ClCompile Include="..\..\src\iplanner\main.cc" />
     <ClCompile Include="..\..\src\iplanner\utils\async_loader.cc" />
+    <ClCompile Include="..\..\src\iplanner\widget\engine_widget.cc" />
+    <ClCompile Include="..\..\src\iplanner\window\engine.cc" />
     <ClCompile Include="..\..\src\iplanner\window\qt_wrapper.cc" />
     <ClCompile Include="..\..\src\iplanner\window\renderer.cc" />
   </ItemGroup>
@@ -31,18 +35,26 @@
   <ItemGroup>
     <None Include="..\..\.gitignore" />
     <None Include="..\..\README.md" />
+    <None Include="..\..\src\shader\color_3d.frag" />
+    <None Include="..\..\src\shader\color_3d.vert" />
     <None Include="..\..\src\shader\test.frag" />
     <None Include="..\..\src\shader\test.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\lib\glad\glad.h" />
+    <ClInclude Include="..\..\src\iplanner\data\camera.h" />
+    <ClInclude Include="..\..\src\iplanner\data\light.h" />
     <ClInclude Include="..\..\src\iplanner\data\mesh.h" />
     <ClInclude Include="..\..\src\iplanner\data\texture.h" />
     <ClInclude Include="..\..\src\iplanner\gl\buffer.h" />
     <ClInclude Include="..\..\src\iplanner\gl\gl_texture.h" />
+    <ClInclude Include="..\..\src\iplanner\gl\program.h" />
+    <ClInclude Include="..\..\src\iplanner\gl\shader.h" />
     <ClInclude Include="..\..\src\iplanner\gl\vertex_array.h" />
     <ClInclude Include="..\..\src\iplanner\types.h" />
     <ClInclude Include="..\..\src\iplanner\utils\async_loader.h" />
+    <QtMoc Include="..\..\src\iplanner\widget\engine_widget.h" />
+    <QtMoc Include="..\..\src\iplanner\window\engine.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5FA1D3D8-33AD-479D-8D9C-FC316FEFDDD9}</ProjectGuid>

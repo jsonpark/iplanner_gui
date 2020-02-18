@@ -3,6 +3,8 @@
 
 #include "iplanner/window/qt_wrapper.h"
 
+#include <QtGui/QOpenGLShaderProgram>
+
 #include "iplanner/gl/buffer.h"
 #include "iplanner/gl/vertex_array.h"
 
@@ -20,6 +22,13 @@ public:
   void Render() override;
 
   void SetAnimating(bool animating);
+
+protected:
+  void mouseMoveEvent(QMouseEvent* e) override;
+  void mousePressEvent(QMouseEvent* e) override;
+  void mouseReleaseEvent(QMouseEvent* e) override;
+  void keyPressEvent(QKeyEvent* ev) override;
+  void keyReleaseEvent(QKeyEvent* ev) override;
 
 private:
   bool animating_ = false;

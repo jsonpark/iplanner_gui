@@ -1,26 +1,24 @@
 #include <iostream>
 
-#include <QtCore/QCoreApplication>
-#include <QGuiApplication>
+//#include <QtCore/QCoreApplication>
+#include <QApplication>
 #include <QtGui/QScreen>
 
-#include "iplanner/window/renderer.h"
+#include "iplanner/window/engine.h"
 
 int main(int argc, char *argv[])
 {
-  QGuiApplication a(argc, argv);
+  QApplication a(argc, argv);
 
   QSurfaceFormat format;
   format.setVersion(4, 4);
   format.setProfile(QSurfaceFormat::OpenGLContextProfile::CoreProfile);
   format.setSamples(16);
+  QSurfaceFormat::setDefaultFormat(format);
 
-  iplanner::Renderer window;
-  window.setFormat(format);
-  window.resize(1280, 720);
-  window.show();
-
-  window.SetAnimating(true);
+  iplanner::Engine engine;
+  engine.resize(1280, 720);
+  engine.show();
 
   return a.exec();
 }

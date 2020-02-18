@@ -45,6 +45,8 @@ public:
   void Bind();
   void Unbind();
 
+  virtual void Update();
+
   void Update(BufferType type, int byte_size, void* data);
   void Update(BufferType type, int byte_size, void* data, BufferUsage usage);
 
@@ -179,7 +181,7 @@ public:
     }
   }
 
-  void Update()
+  void Update() override
   {
     if (needs_update_)
     {

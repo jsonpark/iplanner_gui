@@ -116,6 +116,10 @@ void BufferBase::Unbind()
   glBindBuffer(static_cast<GLenum>(type_), 0);
 }
 
+void BufferBase::Update()
+{
+}
+
 void BufferBase::Update(BufferType type, int byte_size, void* data)
 {
   Update(type, byte_size, data, usage_);

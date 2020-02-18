@@ -37,11 +37,11 @@
     <Filter Include="src\iplanner\utils">
       <UniqueIdentifier>{68407142-bb2a-4583-befb-94c53c1e1f75}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\iplanner\widget">
+      <UniqueIdentifier>{541e0c40-b658-496c-b63b-91ff503ad561}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\iplanner\window\renderer.cc">
-      <Filter>src\iplanner\window</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\iplanner\window\qt_wrapper.cc">
       <Filter>src\iplanner\window</Filter>
     </ClCompile>
@@ -66,15 +66,36 @@
     <ClCompile Include="..\..\src\iplanner\utils\async_loader.cc">
       <Filter>src\iplanner\utils</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\iplanner\gl\gl_texture.cc">
+    <ClCompile Include="..\..\src\iplanner\data\camera.cc">
+      <Filter>src\iplanner\data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\iplanner\window\engine.cc">
+      <Filter>src\iplanner\window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\iplanner\window\renderer.cc">
+      <Filter>src\iplanner\window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\iplanner\widget\engine_widget.cc">
+      <Filter>src\iplanner\widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\iplanner\gl\program.cc">
+      <Filter>src\iplanner\gl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\iplanner\gl\shader.cc">
       <Filter>src\iplanner\gl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="..\..\src\iplanner\window\qt_wrapper.h">
+      <Filter>src\iplanner\window</Filter>
+    </QtMoc>
     <QtMoc Include="..\..\src\iplanner\window\renderer.h">
       <Filter>src\iplanner\window</Filter>
     </QtMoc>
-    <QtMoc Include="..\..\src\iplanner\window\qt_wrapper.h">
+    <QtMoc Include="..\..\src\iplanner\widget\engine_widget.h">
+      <Filter>src\iplanner\widget</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\src\iplanner\window\engine.h">
       <Filter>src\iplanner\window</Filter>
     </QtMoc>
   </ItemGroup>
@@ -89,6 +110,12 @@
       <Filter>src\shader</Filter>
     </None>
     <None Include="..\..\src\shader\test.vert">
+      <Filter>src\shader</Filter>
+    </None>
+    <None Include="..\..\src\shader\color_3d.frag">
+      <Filter>src\shader</Filter>
+    </None>
+    <None Include="..\..\src\shader\color_3d.vert">
       <Filter>src\shader</Filter>
     </None>
   </ItemGroup>
@@ -116,6 +143,18 @@
     </ClInclude>
     <ClInclude Include="..\..\src\iplanner\types.h">
       <Filter>src\iplanner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\iplanner\data\camera.h">
+      <Filter>src\iplanner\data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\iplanner\data\light.h">
+      <Filter>src\iplanner\data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\iplanner\gl\program.h">
+      <Filter>src\iplanner\gl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\iplanner\gl\shader.h">
+      <Filter>src\iplanner\gl</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

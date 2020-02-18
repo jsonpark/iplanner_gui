@@ -41,6 +41,9 @@ using VectorX = Eigen::Matrix<T, -1, 1>;
 
 template<typename T, int rows>
 using Vector = Eigen::Matrix<T, rows, 1>;
+
+template<typename T, int rows, int cols>
+using Matrix = Eigen::Matrix<T, rows, cols>;
 }
 
 #endif // IPLANNER_TYPES_H_

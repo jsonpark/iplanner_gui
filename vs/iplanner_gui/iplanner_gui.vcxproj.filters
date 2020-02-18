@@ -118,6 +118,12 @@
     <None Include="..\..\src\shader\color_3d.vert">
       <Filter>src\shader</Filter>
     </None>
+    <None Include="..\..\src\shader\ground_depth.frag">
+      <Filter>src\shader</Filter>
+    </None>
+    <None Include="..\..\src\shader\ground_depth.vert">
+      <Filter>src\shader</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\iplanner\gl\buffer.h">

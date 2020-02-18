@@ -37,6 +37,8 @@
     <None Include="..\..\README.md" />
     <None Include="..\..\src\shader\color_3d.frag" />
     <None Include="..\..\src\shader\color_3d.vert" />
+    <None Include="..\..\src\shader\ground_depth.frag" />
+    <None Include="..\..\src\shader\ground_depth.vert" />
     <None Include="..\..\src\shader\test.frag" />
     <None Include="..\..\src\shader\test.vert" />
   </ItemGroup>

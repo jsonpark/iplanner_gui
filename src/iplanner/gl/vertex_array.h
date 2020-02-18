@@ -40,6 +40,7 @@ public:
   template <typename T, BufferType type, BufferUsage usage>
   void AttribPointer(int index, int size, Buffer<T, type, usage>& buffer, int stride = 0, int offset = 0)
   {
+    buffer.Update();
     attribs_.emplace_back(buffer, index, size, stride * static_cast<int>(sizeof(T)), offset * static_cast<int>(sizeof(T)));
     needs_attribs_update_ = true;
   }

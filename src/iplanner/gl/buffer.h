@@ -6,6 +6,8 @@
 
 #include <glad/glad.h>
 
+#include "iplanner/types.h"
+
 namespace iplanner
 {
 namespace gl
@@ -87,6 +89,21 @@ private:
       return *this;
     }
 
+    template <int rows>
+    Ref& operator = (const Vector<T, rows>& v)
+    {
+      for (int i = 0; i < rows; i++)
+        buffer_.Modify(idx_ + i, v(i));
+      return *this;
+    }
+
+    Ref& operator = (const VectorX<T>& v)
+    {
+      for (int i = 0; i < v.rows(); i++)
+        buffer_.Modify(idx_ + i, v(i));
+      return *this;
+    }
+
     operator T ()
     {
       return buffer_.data_[idx_];
@@ -156,6 +173,11 @@ public:
   {
     Move(std::move(rhs));
     return *this;
+  }
+
+  Ref operator [] (int idx)
+  {
+    return Ref(*this, idx);
   }
 
   void Resize(int n)

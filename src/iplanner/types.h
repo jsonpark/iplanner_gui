@@ -36,6 +36,9 @@ using AngleAxisd = Eigen::AngleAxisd;
 using VectorXf = Eigen::VectorXf;
 using VectorXd = Eigen::VectorXd;
 
+using Quaternionf = Eigen::Quaternionf;
+using Quaterniond = Eigen::Quaterniond;
+
 template<typename T>
 using VectorX = Eigen::Matrix<T, -1, 1>;
 

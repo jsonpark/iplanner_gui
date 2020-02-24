@@ -16,6 +16,7 @@
 #include "iplanner/data/light.h"
 #include "iplanner/data/texture.h"
 #include "iplanner/data/material.h"
+#include "iplanner/object/ball.h"
 
 namespace iplanner
 {
@@ -36,6 +37,11 @@ protected:
   void mouseMoveEvent(QMouseEvent* e) override;
 
 private:
+  // Framebuffer rendering for mouse interaction
+  void RenderMouseInteractionFramebuffer();
+
+  // Mouse interaction object
+
   // Lattice
   double lattice_size_ = 1.;
   int lattice_num_ = 10;
@@ -65,6 +71,9 @@ private:
   gl::VertexArray mesh_texture_light_vao_;
   gl::VertexArray mesh_color_light_vao_;
   GLenum mesh_texture_id_;
+
+  // Test ball
+  Ball ball_{ 3 };
 
   gl::Program color_3d_program_{ "..\\src\\shader", "color_3d"};
   gl::Program ground_depth_program_{ "..\\src\\shader", "ground_depth" };

@@ -118,6 +118,8 @@ void EngineWidget::initializeGL()
   mesh_texture_light_vao_.AttribPointer(1, 3, mesh_vbo_normals_);
   mesh_texture_light_vao_.AttribPointer(2, 2, mesh_vbo_tex_coords_);
   mesh_texture_light_vao_.Indices(gl::VertexArray::DrawMode::TRIANGLES, mesh_elements_);
+
+  // Ball
 }
 
 void EngineWidget::paintGL()
@@ -218,9 +220,17 @@ void EngineWidget::paintGL()
     else
       mesh_texture_light_program_.Uniform1i("has_diffuse_texture", 0);
 
-    mesh_texture_light_program_.Uniform1f("alpha", 0.5);
+    mesh_texture_light_program_.Uniform1f("alpha", 1.f);
 
     mesh_texture_light_vao_.Draw();
+
+    mesh_texture_light_program_.Uniform1i("has_diffuse_texture", 0);
+    matrix.translate(Vector3f(1.f, 1.f, 1.f));
+    matrix.scale(0.1);
+    mesh_texture_light_program_.UniformMatrix4f("model", matrix.matrix());
+    mesh_texture_light_program_.UniformMatrix3f("model_inv_tp", matrix.matrix().block(0, 0, 3, 3).inverse().transpose());
+    mesh_texture_light_program_.Uniform1f("alpha", 1.f);
+    ball_.Draw();
   }
 }
 
@@ -259,5 +269,9 @@ void EngineWidget::mouseMoveEvent(QMouseEvent* e)
   }
 
   mouse_last_pos_ = Vector2i(e->x(), e->y());
+}
+
+void EngineWidget::RenderMouseInteractionFramebuffer()
+{
 }
 }

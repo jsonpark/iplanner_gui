@@ -19,6 +19,8 @@
     <ClCompile Include="..\..\src\iplanner\gl\shader.cc" />
     <ClCompile Include="..\..\src\iplanner\gl\vertex_array.cc" />
     <ClCompile Include="..\..\src\iplanner\main.cc" />
+    <ClCompile Include="..\..\src\iplanner\object\ball.cc" />
+    <ClCompile Include="..\..\src\iplanner\object\interactive_ball.cc" />
     <ClCompile Include="..\..\src\iplanner\utils\async_loader.cc" />
     <ClCompile Include="..\..\src\iplanner\utils\stbi_load_helper.cc" />
     <ClCompile Include="..\..\src\iplanner\widget\engine_widget.cc" />
@@ -60,6 +62,8 @@
     <ClInclude Include="..\..\src\iplanner\gl\program.h" />
     <ClInclude Include="..\..\src\iplanner\gl\shader.h" />
     <ClInclude Include="..\..\src\iplanner\gl\vertex_array.h" />
+    <ClInclude Include="..\..\src\iplanner\object\ball.h" />
+    <ClInclude Include="..\..\src\iplanner\object\interactive_ball.h" />
     <ClInclude Include="..\..\src\iplanner\types.h" />
     <ClInclude Include="..\..\src\iplanner\utils\async_loader.h" />
     <ClInclude Include="..\..\src\iplanner\utils\stbi_load_helper.h" />

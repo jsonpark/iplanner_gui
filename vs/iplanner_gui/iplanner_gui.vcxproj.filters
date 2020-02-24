@@ -40,6 +40,9 @@
     <Filter Include="src\iplanner\widget">
       <UniqueIdentifier>{541e0c40-b658-496c-b63b-91ff503ad561}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\iplanner\object">
+      <UniqueIdentifier>{22d21003-6af9-4def-b4de-3eade48511a1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\iplanner\window\qt_wrapper.cc">
@@ -83,6 +86,12 @@
     </ClCompile>
     <ClCompile Include="..\..\src\iplanner\utils\stbi_load_helper.cc">
       <Filter>src\iplanner\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\iplanner\object\ball.cc">
+      <Filter>src\iplanner\object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\iplanner\object\interactive_ball.cc">
+      <Filter>src\iplanner\object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +194,12 @@
     </ClInclude>
     <ClInclude Include="..\..\src\iplanner\data\material.h">
       <Filter>src\iplanner\data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\iplanner\object\ball.h">
+      <Filter>src\iplanner\object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\iplanner\object\interactive_ball.h">
+      <Filter>src\iplanner\object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
